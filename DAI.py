@@ -71,6 +71,9 @@ while True:
         DAN.push('wt-Brightness-I', get_property(WEBTHING_URL,login_jwt, "philips-hue-ecb5fafffe33c53e-1", "level"))  # Push data to an input device feature "Dummy_Sensor"
         print(f'Data Send;on {get_property(WEBTHING_URL, login_jwt, "philips-hue-ecb5fafffe33c53e-1", "on")}; ct{get_property(WEBTHING_URL,login_jwt, "philips-hue-ecb5fafffe33c53e-1", "colorTemperature")}; level: {get_property(WEBTHING_URL,login_jwt, "philips-hue-ecb5fafffe33c53e-1", "level")}')
         # ==================================
+        # 注意，你不能同時使用上下兩段代碼，因為會造成Loop
+        # 你可能需要其他資料來源，協助你控制IoT設備
+        # ==================================
 
         set_property(WEBTHING_URL, login_jwt, "philips-hue-ecb5fafffe33c53e-1", "on", 1 if DAN.pull('wt-switch-O') else 0)
         set_property(WEBTHING_URL, login_jwt, "philips-hue-ecb5fafffe33c53e-1", "colorTemperature", int(DAN.pull('wt-colorTemperature-O')))
